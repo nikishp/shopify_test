@@ -11,3 +11,31 @@ hamburgerClose.addEventListener('click', event => {
   document.querySelector('body').classList.remove("nav-open");
 });
 
+
+window.addEventListener("load", onLoadFunction);
+
+function onLoadFunction(e){
+  let cartCount = '';
+  setTimeout(function(){ 
+    cartCount = document.querySelector('#slidecarthq .cart-count').innerText;
+    if(cartCount){
+      document.querySelector('.basket .cart-count').innerText = cartCount;
+      document.querySelector('.basket .cart-count').style.display = "flex";
+    }else{
+      document.querySelector('.basket .cart-count').style.display = "none";
+    }
+  }, 1000);
+}
+
+window.addEventListener("click", onClickFunction);
+
+function onClickFunction(e){
+  let cartCount = '';
+  cartCount = document.querySelector('#slidecarthq .cart-count').innerText;
+  if(cartCount){
+    document.querySelector('.basket .cart-count').innerText = cartCount;
+    document.querySelector('.basket .cart-count').style.display = "flex";
+  }else{
+    document.querySelector('.basket .cart-count').style.display = "none";
+  }
+}

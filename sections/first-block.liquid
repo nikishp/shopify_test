@@ -1,0 +1,81 @@
+{% if section.settings.top_bg != blank %}
+<style>
+  .top{
+    background-image: url({{ section.settings.top_bg | img_url: 'master' }});
+  }
+</style>
+{% endif %}
+
+<div class="top">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+
+        <div class="top__price">
+         {% if section.settings.price_first != blank %}
+         <div class="top__price-item top__price-item--new">
+           {{ section.settings.price_first }}
+         </div>
+         {% endif %}
+         {% if section.settings.price_second != blank %}
+         <div class="top__price-item top__price-item--old">
+           {{ section.settings.price_second }}
+         </div>
+         {% endif %}
+       </div>
+
+       {% if section.settings.top_cta != blank %}
+       <div class="top__action">
+         <a href="{{ section.settings.top_cta }}" class="btn">
+           Start Shopping
+         </a>
+       </div>
+       {% endif %}
+       
+     </div>
+   </div>
+ </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Block",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading"
+  }, 
+  {
+    "type": "text",
+    "id": "price_first",
+    "label": "Price new"
+  }, 
+  {
+    "type": "text",
+    "id": "price_second",
+    "label": "Price old"
+  },
+  {
+    "type": "url",
+    "id": "top_cta",
+    "label": "Button link"
+  },
+  {
+    "type": "image_picker",
+    "id": "top_bg",
+    "label": "Background image"
+  }
+  ],
+  "presets": [
+  {
+    "name": "First block",
+    "category": "Blocks"
+  }
+  ]
+}
+{% endschema %}

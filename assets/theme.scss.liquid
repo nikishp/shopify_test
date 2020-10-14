@@ -1,3 +1,7 @@
+$def: #202020;
+$red: #CC0000;
+
+
 
 html{
   padding-bottom: 0 !important;
@@ -30,7 +34,7 @@ body{
   font-size: 16px;
   line-height: 1.2;
   font-weight: 400;
-  color: #202020;
+  color: $def;
   font-family: 'Mulish', sans-serif;
 }
 
@@ -82,6 +86,49 @@ img{
   max-width: 100%;
   width: auto;
 }
+h2{
+  font-size: 32px;
+  line-height: 1.4;
+}
+.btn{
+  position: relative;
+  z-index: 1;
+  width: 164px;
+  height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0px -1px 0px rgba(32, 32, 32, 0.33);
+  transition: all .25s linear;
+  background: $red;
+  border: 1px solid #950000;
+  box-shadow: inset 0px -2px 2px rgba(32, 32, 32, 0.33);
+  border-radius: 4px;
+  &:hover{
+    transform: translateY(5px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -128,7 +175,7 @@ img{
   padding: 0;
   list-style-type: none;
   li:last-child{
-    color: #CC0000;
+    color: $red;
     text-transform: uppercase;
   }
   a{
@@ -152,11 +199,28 @@ img{
 
 
 .basket{
+  position: relative;
   display: block;
   padding: 12px;
   padding-right: 0;
   cursor: pointer;
-  font-size: 0;
+  // font-size: 0;
+  .cart-count{
+    position: absolute;
+    top: 7px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    font-size: 9px;
+    color: #fff;
+    border-radius: 50%;
+    background: $red;
+  }
 }
 
 
@@ -206,20 +270,122 @@ body.nav-open{
 
 
 
+.collection-list{
+  padding: 70px 0;
+  h2{
+    margin-bottom: 35px;
+    text-align: center;
+  }
+}
+.collection-list__box{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
 
+.collection-list__item{
+  position: relative;
+  width: calc(50% - 20px);
+  display: block;
+  margin: 10px;
+  font-size: 0;
+  text-decoration: none;
+  &:hover{
+    .collection-list__item-content b{
+      color: $red;
+    }
+  }
+}
+.collection-list__item-img{
+  display: block;
+}
+.collection-list__item-content{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 15px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: $def;
+  background: rgba(255, 255, 255, .7);
+  b,span{
+    display: block;
+    transition: color .25s linear;
+  }
+  span{
+    font-size: 16px;
+  }
+}
 
+.top{
+  padding: 70px 0;
+  color: #fff;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: cover;
+  h2{
+    margin-top: 160px;
 
+  }
+}
 
+.top__price{
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  font-weight: bold;
+}
+.top__price-item{
+  margin: 0 5px;
+}
+.top__price-item--old{
+  font-weight: normal;
+  text-decoration-line: line-through;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.33);
+}
 
+.top__action{
+  margin-top: 33px;
+  text-align: center;
+}
 
+.product-block{
+  padding-bottom: 70px;
+}
 
-
-
-
-
-
-
-
+/*=========================*/
+.modal {
+ max-width: 575px;
+ background: white;
+ border: 5px solid #111;
+ padding: 50px 65px;
+ position: fixed;
+ z-index: 1000;
+}
+.modal .close {
+ position: absolute;
+ top: 10px;
+ right: 20px;
+ font-size: 20px;
+ cursor: pointer;
+}
+.modal--overlay {
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ z-index: 100;
+ background-color: rgba(0, 0, 0, 0.4);
+}
+.hidden {
+ display: none;
+}
+/*=========================*/
 
 
 
@@ -280,12 +446,60 @@ body.nav-open{
 .header__content-close{
   display: block;
 }
+h2{
+  font-size: 26px;
+  line-height: 1.2;
+  br{
+    display: none;
+  }
+}
+
+
+
+
 
 }/*991*/
 
 
-// 
 
-#MainContent{
-  height: 999999px;
-}
+@media only screen and (max-width: 768px){
+  .collection-list__item-content{
+    padding: 10px;
+    font-size: 18px;
+  }
+
+
+  }/*768px*/
+
+
+  @media only screen and (max-width: 576px){
+    .collection-list__item {
+      width: calc(100% - 20px);
+    }
+    }/*576px*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

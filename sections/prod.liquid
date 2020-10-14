@@ -1,0 +1,63 @@
+<div class="collection-list">
+  {% if section.settings.title != blank %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>{{ section.settings.title | escape }}</h2>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="collection-list__box">  
+          {% for block in section.blocks %}  
+          {%- assign product = all_products[block.settings.product_id] -%}
+          <a href="{{ product.url | default: '#' }}" class="collection-list__item">
+            <span class="collection-list__item-img">
+              <img src="{{ product.featured_image | product_img_url: '600x' }}">
+            </span>
+            <span class="collection-list__item-content">
+              <b>{{product.title}}</b>
+              <span>{{ product.vendor}}</span> 
+            </span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "image",
+    "name": "Item", 
+    "settings": [
+    {
+      "type":      "product",
+      "id":        "product_id",
+      "label":     "Product"
+    }
+    ]
+  }
+  ],
+  "presets": [
+  {
+    "name": "Featured Products",
+    "category": "Blocks"
+  }
+  ]
+}
+{% endschema %}
