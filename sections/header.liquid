@@ -1,0 +1,121 @@
+<header data-section-id="{{ section.id }}" data-section-type="header" class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="header__box">
+          <div class="hamburger">
+            <svg width="32" height="17" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#202020" stroke-linecap="round" d="M.5.5h31M.5 8.5h24M.5 16.5h31"/></svg>
+          </div>
+          {% if section.settings.logo_id != blank %}
+          <a href="/" class="logo">
+            <img src="{{section.settings.logo_id | img_url: 'master' }}" alt="{{ shop.name }}">
+          </a>
+          {% endif %}
+          <div class="header__content">
+            <div class="header__content-close">
+              <svg width="26" height="25" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#fff" d="M1.354.646l24 24M.646 24.646l24-24"/></svg>
+            </div>
+            <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+              <div class="search-form__fied">
+                <input
+                type="text"
+                name="q"
+                placeholder="Type your search"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-owns="predictive-search-results"
+                aria-expanded="false"
+                aria-label="Type your search"
+                aria-haspopup="listbox"
+                data-predictive-search-drawer-input
+                />
+                <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+                <button class="search-form__submit"
+                type="submit"
+                data-search-form-submit>
+                <svg width="25" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.239" cy="9.239" r="8.739" stroke="#202020"/><path stroke="#202020" d="M15.752 15.045l8.602 8.601"/></svg>
+              </button>
+            </div>
+          </form>
+
+
+
+          <nav class="nav">
+            {% assign header_linklist = section.settings.header_menu_id %}
+            {% if header_linklist != blank %}
+            {% comment %}{{linklists[header_linklist].title}}{% endcomment %}
+            <ul class="nav__list">
+              {% for link in linklists[header_linklist].links %}
+              {% if link.links != blank %}
+              <li>
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                  {% include 'icon-arrow-down' %}
+                </a>
+                <ul>
+                  {% for childlink in link.links %}
+                  <li>
+                    <a href="{{ childlink.url }}">
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              {% else %}
+              <li>
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                </a>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </nav>
+
+
+        </div>
+
+
+        <button type="button" class="search-btn">
+          <svg width="25" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.239" cy="9.239" r="8.739" stroke="#202020"/><path stroke="#202020" d="M15.752 15.045l8.602 8.601"/></svg>
+        </button>
+
+        <div class="basket">
+          <svg width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1h3.037l3.387 16.776c.027.676.565 1.217 1.237 1.217H23.95" stroke="#202020"/><path d="M3.5 3.814h19.401c.43 0 .807.162 1.076.487.242.325.35.73.268 1.163l-1.532 8.037c-.16.865-.994 1.542-1.854 1.569H5.866M8.349 22.835c0-.917.747-1.664 1.65-1.664.904 0 1.65.747 1.65 1.664 0 .918-.746 1.665-1.65 1.665-.903 0-1.65-.747-1.65-1.665zM18.267 22.835c0-.917.747-1.664 1.65-1.664.904 0 1.651.747 1.651 1.664 0 .918-.747 1.665-1.65 1.665-.904 0-1.65-.747-1.65-1.665z" stroke="#202020"/></svg>
+          <span>9</span>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</header>
+
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Settings"
+  },
+
+  {
+    "type": "image_picker",
+    "id": "logo_id",
+    "label": "Logo image"
+  },
+  {
+    "type":      "link_list",
+    "id":        "header_menu_id",
+    "label":     "Header menu"
+  }
+
+  ]
+} 
+{% endschema %}
